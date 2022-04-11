@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Json.Net;
 
 namespace Ezekiel
 {
@@ -9,9 +10,11 @@ namespace Ezekiel
         {
             Console.OutputEncoding = Encoding.UTF8;
 
-            FileSort fileSort = new FileSort("C:\\Users\\kranz\\Desktop");
-
-            fileSort.Sort();
+            foreach (string arg in args)
+            {
+                FileSort fileSort = new FileSort(arg);
+                fileSort.Sort();
+            }
         }
     }
 }
