@@ -15,6 +15,8 @@ namespace Ezekiel
                 FileSort fileSort = new FileSort(arg);
                 fileSort.Sort();
             }
+
+            Console.ReadLine();
         }
     }
 }

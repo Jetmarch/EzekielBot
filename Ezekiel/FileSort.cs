@@ -23,11 +23,13 @@ namespace Ezekiel
         {
             string[] files = Directory.GetFiles(sortingDirectory);
 
+            int movedFilesCount = 0;
+
             foreach (string file in files)
             {
 
                 //Пропускаем точку в расширении файла
-                string fileExt = Path.GetExtension(file).Substring(1);
+                string fileExt = Path.GetExtension(file).Substring(1).ToLower();
                 string pathForFileMove;
                 string fileName = Path.GetFileName(file);
 
@@ -37,6 +39,8 @@ namespace Ezekiel
                     if (pathForFileMove != null)
                     {
                         File.Move(file, $"{pathForFileMove}\\{fileName}");
+                        Console.WriteLine($"Перенесён файл {fileName} в папку {pathForFileMove}");
+                        movedFilesCount++;
                     }
                     else
                     {
@@ -50,10 +54,10 @@ namespace Ezekiel
                 catch (Exception e)
                 {
                     Console.WriteLine(e.ToString());
-
-                    File.WriteAllText("D:\\Ezekiel\\Ezekiel\\bin\\Debug\\netcoreapp3.1\\log.txt", e.ToString());
                 }
             }
+
+            Console.WriteLine($"Перенесено файлов {movedFilesCount}");
         }
     }
 }
